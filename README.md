@@ -143,7 +143,6 @@ const AccordionComponent = () => {
         >
           ...
         </AccordionTrigger>
-
         <AccordionContent
           id={contentId}
           value='account'
@@ -156,3 +155,11 @@ const AccordionComponent = () => {
   );
 };
 ```
+
+#### skapa objekt
+
+[struktur]
+
+- see layout -->@/components/CreateNavbar --> link to crud folder (page)
+
+//skapa objekt

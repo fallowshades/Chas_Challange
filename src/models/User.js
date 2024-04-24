@@ -1,12 +1,13 @@
-import { Schema, model, models } from "mongoose";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import { Schema, model, models } from 'mongoose';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const userSchema = new Schema(
   {
     name: String,
     lastname: String,
     email: String,
+    username: String,
     password: String,
   },
   {
@@ -27,4 +28,4 @@ userSchema.methods.generateToken = function () {
   return jwt.sign({ id: this._id }, process.env.JWT_SECRET);
 };
 
-export default models.User || model("User", userSchema);
+export default models.User || model('User', userSchema);
