@@ -12,9 +12,19 @@ import {
 } from '@/components/ui/alert-dialog';
 
 const AlertDialogComponent = () => {
+  const idPrefix = 'radix';
+  const triggerId = `${idPrefix}-trigger`;
+  const contentId = `${idPrefix}-content`;
+
   return (
     <AlertDialog>
-      <AlertDialogTrigger>Open</AlertDialogTrigger>
+      <AlertDialogTrigger
+        id={triggerId}
+        aria-controls={contentId}
+        aria-labelledby={triggerId}
+      >
+        Open
+      </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>

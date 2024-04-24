@@ -14,6 +14,7 @@ export default async function HomePage() {
   const tasks = await loadTasks();
 
   const convenientFindLibraryComponents = true;
+
   return (
     <div className='grid md:grid-cols-3 gap-2'>
       {tasks.map((task) => (

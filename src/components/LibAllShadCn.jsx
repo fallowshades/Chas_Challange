@@ -1,4 +1,3 @@
-'use client';
 // documentation how to add more components using shadcd library- https://ui.shadcn.com/docs/components/card
 import AccordionComponent from '@/components/AllShadCnComponents/AccordionComponent';
 import AlertComponent from '@/components/AllShadCnComponents/AlertComponent';

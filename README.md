@@ -117,3 +117,42 @@ module.exports = {
   plugins: [require('tailwindcss-animate'), flowbite.plugin()],
 };
 ```
+
+#### Fix accessibility noice as alternating between client ans server side
+
+[accecability]
+
+- problem: app-index.js:32 Warning: Prop `aria-controls` did not match. Server: "radix-:R256qcq:" Client: "radix-:R8kr9j9:" solution match on both server and client side (https://github.com/shadcn-ui/ui/issues/1018)
+
+- fix aria for all components implementing the shadcn imports
+
+```jsx
+const AccordionComponent = () => {
+  const idPrefix = 'radix';
+  const triggerId = `${idPrefix}-trigger`;
+  const contentId = `${idPrefix}-content`;
+
+  return (
+    <Accordion type='single' collapsible>
+      <AccordionItem value='item-1'>
+        <AccordionTrigger
+          id={triggerId}
+          value='account'
+          aria-controls={contentId}
+          aria-labelledby={triggerId}
+        >
+          ...
+        </AccordionTrigger>
+
+        <AccordionContent
+          id={contentId}
+          value='account'
+          aria-labelledby={triggerId}
+        >
+          ...
+        </AccordionContent>
+      </AccordionItem>
+    </Accordion>
+  );
+};
+```
