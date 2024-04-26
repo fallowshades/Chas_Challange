@@ -163,3 +163,124 @@ const AccordionComponent = () => {
 - see layout -->@/components/CreateNavbar --> link to crud folder (page)
 
 //skapa objekt
+
+#### api auth and user
+
+[postman,thunderclient] test endpoints
+
+{{travelSite}}/api/auth/register
+POST
+
+```json
+{
+  "name": "Bubbles McLaughster",
+  "lastName": "Ticklebottom",
+  "email": "test@test.com",
+  "username": "String",
+  "password": "secret123"
+}
+```
+
+{{travelSite}}/api/auth/login
+POST
+
+```json
+{
+  "email": "test@test.com",
+  "password": "secret123"
+}
+```
+
+```js
+import User from '@/models/User';
+
+import { NextResponse } from 'next/server';
+
+import { dbConnect } from '@/utils/mongoose';
+export async function GET() {
+  await dbConnect();
+  const tasks = await User.find();
+  return NextResponse.json(tasks);
+}
+
+export async function POST(request) {
+  try {
+    const body = await request.json(); //no req object parsed
+
+    const isFirstAccount = (await User.countDocuments()) === 0;
+    body.role = isFirstAccount ? 'admin' : 'user';
+
+    const newUser = new User(body);
+    const savedUser = await newUser.save();
+    return NextResponse.json(savedUser);
+  } catch (error) {
+    return NextResponse.json(error.message, {
+      status: 400,
+    });
+  }
+}
+```
+
+NEXTJS use foldernames to map the request to the correct handler. note that in the api folder all request in an url that end in either '/' or '/:id' where id is a sequence of numbers. in your local database in mongodb compass you can see that once an object is created a random '\_id' is generated.
+
+api/auth/register
+
+```js
+import { dbConnect } from '@/utils/mongoose';
+export async function GET() {
+  await dbConnect();
+  const tasks = await User.find();
+  return NextResponse.json(tasks);
+}
+
+export async function POST(request) {
+  try {
+    const body = await request.json(); //no req object parsed
+
+    const isFirstAccount = (await User.countDocuments()) === 0;
+    body.role = isFirstAccount ? 'admin' : 'user';
+
+    const newUser = new User(body);
+    const savedUser = await newUser.save();
+    return NextResponse.json(savedUser);
+  } catch (error) {
+    return NextResponse.json(error.message, {
+      status: 400,
+    });
+  }
+}
+```
+
+#### changes in model
+
+- mongoDB generate the id for us
+
+```js
+const AccountSchema = new Schema(
+  {
+    userid: {
+      type: Number,
+      required: [true, 'The Task title is required '],
+      unique: true,
+    },
+    ...
+  })
+```
+
+- a rolebased application like to use a finite set of roles to pich from.
+
+````js
+const userSchema = new Schema(
+{
+    email: String,
+    username: String,
+    password: String,
+    role: {
+      type: String,
+      enum: ['user', 'admin'],
+      default: 'user',
+    },
+    ...
+   } )
+```
+````
