@@ -1,7 +1,8 @@
 import User from '@/models/User';
-import { dbConnect } from '@/utils/mongoose';
+
 import { NextResponse } from 'next/server';
 
+import { dbConnect } from '@/utils/mongoose';
 export async function GET() {
   await dbConnect();
   const tasks = await User.find();
@@ -10,10 +11,14 @@ export async function GET() {
 
 export async function POST(request) {
   try {
-    const body = await request.json();
-    const newTask = new User(body);
-    const savedTask = await newTask.save();
-    return NextResponse.json(savedTask);
+    const body = await request.json(); //no req object parsed
+
+    const isFirstAccount = (await User.countDocuments()) === 0;
+    body.role = isFirstAccount ? 'admin' : 'user';
+
+    const newUser = new User(body);
+    const savedUser = await newUser.save();
+    return NextResponse.json(savedUser);
   } catch (error) {
     return NextResponse.json(error.message, {
       status: 400,

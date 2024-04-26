@@ -2,11 +2,6 @@ import mongoose, { Schema, model, models } from 'mongoose';
 //believe user ids must be maintained in redux store to not get lost ?
 const AccountSchema = new Schema(
   {
-    userid: {
-      type: Number,
-      required: [true, 'The Task title is required '],
-      unique: true,
-    },
     users: {
       type: mongoose.Types.ObjectId,
       ref: 'User',

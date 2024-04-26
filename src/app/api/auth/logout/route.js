@@ -11,9 +11,8 @@ export async function GET() {
 export async function POST(request) {
   try {
     const body = await request.json();
-    const newTask = new User(body);
-    const savedTask = await newTask.save();
-    return NextResponse.json(savedTask);
+
+    return NextResponse.json({ msg: 'user logged out!' });
   } catch (error) {
     return NextResponse.json(error.message, {
       status: 400,

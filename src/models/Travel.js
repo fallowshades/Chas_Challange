@@ -26,4 +26,4 @@ const TravelSchema = new Schema(
   }
 );
 
-export default models.Travel || model('Travel', TaskSchema);
+export default models.Travel || model('Travel', TravelSchema);

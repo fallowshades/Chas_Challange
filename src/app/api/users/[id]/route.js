@@ -1,23 +1,23 @@
-import Task from "@/models/Task";
-import { dbConnect } from "@/utils/mongoose";
-import { NextResponse } from "next/server";
+import User from '@/models/User';
+import { dbConnect } from '@/utils/mongoose';
+import { NextResponse } from 'next/server';
 
 export async function GET(request, { params }) {
   dbConnect();
   try {
-    const taskFound = await Task.findById(params.id);
+    const userFount = await User.findById(params.id);
 
-    if (!taskFound)
+    if (!userFount)
       return NextResponse.json(
         {
-          message: "Task not found",
+          message: 'user not found',
         },
         {
           status: 404,
         }
       );
 
-    return NextResponse.json(taskFound);
+    return NextResponse.json(userFount);
   } catch (error) {
     return NextResponse.json(error.message, {
       status: 400,
@@ -30,21 +30,21 @@ export async function PUT(request, { params }) {
   dbConnect();
 
   try {
-    const taskUpdated = await Task.findByIdAndUpdate(params.id, body, {
+    const userUpdated = await User.findByIdAndUpdate(params.id, body, {
       new: true,
     });
 
-    if (!taskUpdated)
+    if (!userUpdated)
       return NextResponse.json(
         {
-          message: "Task not found",
+          message: 'user not found',
         },
         {
           status: 404,
         }
       );
 
-    return NextResponse.json(taskUpdated);
+    return NextResponse.json(userUpdated);
   } catch (error) {
     return NextResponse.json(error.message, {
       status: 400,
@@ -56,19 +56,19 @@ export async function DELETE(request, { params }) {
   dbConnect();
 
   try {
-    const taskDeleted = await Task.findByIdAndDelete(params.id);
+    const userDeleted = await User.findByIdAndDelete(params.id);
 
-    if (!taskDeleted)
+    if (!userDeleted)
       return NextResponse.json(
         {
-          message: "Task not found",
+          message: 'user not found',
         },
         {
           status: 404,
         }
       );
 
-    return NextResponse.json(taskDeleted);
+    return NextResponse.json(userDeleted);
   } catch (error) {
     return NextResponse.json(error.message, {
       status: 400,
