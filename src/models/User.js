@@ -44,10 +44,6 @@ userSchema.statics.comparePassword = async function (password, hash) {
   return await bcrypt.compare(password, hash);
 };
 
-userSchema.methods.generateToken = function () {
-  return jwt.sign({ id: this._id }, process.env.JWT_SECRET);
-};
-
 userSchema.methods.toJSON = function () {
   var obj = this.toObject();
   delete obj.password;
