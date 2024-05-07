@@ -4,6 +4,8 @@ import Task from '@/models/Task';
 import AllShadCn from '@/components/LibAllShadCn';
 import FlowbitComponents from '@/components/LibFlowbitComponents';
 import SemanticComponent from '@/components/LibSemantic';
+import Link from 'next/link';
+
 export async function loadTasks() {
   await dbConnect();
   const tasks = await Task.find();
@@ -17,6 +19,7 @@ export default async function HomePage() {
 
   return (
     <div className='grid md:grid-cols-3 gap-2'>
+      <Link href='/auth/signup'> signup </Link>
       {tasks.map((task) => (
         <TaskCard task={task} key={task._id} />
       ))}

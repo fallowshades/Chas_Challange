@@ -1,21 +1,24 @@
-import { CreateObjects } from '@/components/CreateNavbar';
-import '../styles/globals.css';
+import { CreateObjects } from '@/components/CreateNavbar'
+import '../styles/globals.css'
 
 export const metadata = {
   title: 'NextMongo',
   description: 'NextMongo is a simple app to manage tasks.',
-};
-
+}
+import StoreProvider from '@/app/storeProvider'
+import store from '@/lib/store'
 function RootLayout({ children }) {
-  const creatingeTest = true;
+  const creatingeTest = true
   return (
     <html>
       <body>
-        {creatingeTest && <CreateObjects />}
-        <main className='px-5 md:px-0 container mx-auto'>{children}</main>
+        <StoreProvider store={store}>
+          {creatingeTest && <CreateObjects />}
+          <main className='px-5 md:px-0 container mx-auto'>{children}</main>
+        </StoreProvider>
       </body>
     </html>
-  );
+  )
 }
 
-export default RootLayout;
+export default RootLayout
