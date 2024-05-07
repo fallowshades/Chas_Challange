@@ -34,7 +34,7 @@ npm i flowbite-react
 - thus we use static imports instead of dynamic imports like the documentation
 
 ```js
-import flowbite from 'flowbite-react/tailwind';
+import flowbite from 'flowbite-react/tailwind'
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
@@ -115,7 +115,7 @@ module.exports = {
     flowbite.content(),
   ],
   plugins: [require('tailwindcss-animate'), flowbite.plugin()],
-};
+}
 ```
 
 #### Fix accessibility noice as alternating between client ans server side
@@ -128,9 +128,9 @@ module.exports = {
 
 ```jsx
 const AccordionComponent = () => {
-  const idPrefix = 'radix';
-  const triggerId = `${idPrefix}-trigger`;
-  const contentId = `${idPrefix}-content`;
+  const idPrefix = 'radix'
+  const triggerId = `${idPrefix}-trigger`
+  const contentId = `${idPrefix}-content`
 
   return (
     <Accordion type='single' collapsible>
@@ -152,8 +152,8 @@ const AccordionComponent = () => {
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  );
-};
+  )
+}
 ```
 
 #### skapa objekt
@@ -192,31 +192,31 @@ POST
 ```
 
 ```js
-import User from '@/models/User';
+import User from '@/models/User'
 
-import { NextResponse } from 'next/server';
+import { NextResponse } from 'next/server'
 
-import { dbConnect } from '@/utils/mongoose';
+import { dbConnect } from '@/utils/mongoose'
 export async function GET() {
-  await dbConnect();
-  const tasks = await User.find();
-  return NextResponse.json(tasks);
+  await dbConnect()
+  const tasks = await User.find()
+  return NextResponse.json(tasks)
 }
 
 export async function POST(request) {
   try {
-    const body = await request.json(); //no req object parsed
+    const body = await request.json() //no req object parsed
 
-    const isFirstAccount = (await User.countDocuments()) === 0;
-    body.role = isFirstAccount ? 'admin' : 'user';
+    const isFirstAccount = (await User.countDocuments()) === 0
+    body.role = isFirstAccount ? 'admin' : 'user'
 
-    const newUser = new User(body);
-    const savedUser = await newUser.save();
-    return NextResponse.json(savedUser);
+    const newUser = new User(body)
+    const savedUser = await newUser.save()
+    return NextResponse.json(savedUser)
   } catch (error) {
     return NextResponse.json(error.message, {
       status: 400,
-    });
+    })
   }
 }
 ```
@@ -226,27 +226,27 @@ NEXTJS use foldernames to map the request to the correct handler. note that in t
 api/auth/register
 
 ```js
-import { dbConnect } from '@/utils/mongoose';
+import { dbConnect } from '@/utils/mongoose'
 export async function GET() {
-  await dbConnect();
-  const tasks = await User.find();
-  return NextResponse.json(tasks);
+  await dbConnect()
+  const tasks = await User.find()
+  return NextResponse.json(tasks)
 }
 
 export async function POST(request) {
   try {
-    const body = await request.json(); //no req object parsed
+    const body = await request.json() //no req object parsed
 
-    const isFirstAccount = (await User.countDocuments()) === 0;
-    body.role = isFirstAccount ? 'admin' : 'user';
+    const isFirstAccount = (await User.countDocuments()) === 0
+    body.role = isFirstAccount ? 'admin' : 'user'
 
-    const newUser = new User(body);
-    const savedUser = await newUser.save();
-    return NextResponse.json(savedUser);
+    const newUser = new User(body)
+    const savedUser = await newUser.save()
+    return NextResponse.json(savedUser)
   } catch (error) {
     return NextResponse.json(error.message, {
       status: 400,
-    });
+    })
   }
 }
 ```
@@ -284,3 +284,25 @@ const userSchema = new Schema(
    } )
 ```
 ````
+
+#### branch teamwork
+
+- mv and create branch flag (test --> no go => instead in main branch)
+
+```sh
+git checkout -b redux-setup ( cant fetch data if on same branch)
+```
+
+```sh
+ git fetch origin reduxBranch:redux-setup
+ git checkout redux-setup
+```
+
+- some outdated packages
+
+```sh
+npm i --force
+npm run dev
+```
+
+- see documentation/bookings
