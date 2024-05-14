@@ -306,3 +306,28 @@ npm run dev
 ```
 
 - see documentation/bookings
+
+#### Fix
+
+loader.jsx
+
+- use proper imports
+
+```jsx
+import { Skeleton } from '@/components/ui/skeleton'
+```
+
+#### Fix broken stype. dont use too many component libraries
+
+tailwind.config.js
+
+- could not use grid since style are not working
+
+```jsx
+/**
+ *   content: [
+    // ...
+    //flowbite.content(),
+  ],
+ */
+```

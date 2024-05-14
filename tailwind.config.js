@@ -74,13 +74,17 @@ module.exports = {
       },
     },
   },
-  content: [
-    // ...
-    flowbite.content(),
-  ],
+
   plugins: [
     require('tailwindcss-animate'),
     flowbite.plugin(),
     require('daisyui'),
   ],
 }
+
+/**
+ *   content: [
+    // ...
+    //flowbite.content(),
+  ],
+ */
