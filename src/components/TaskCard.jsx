@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Link from 'next/link'
 
 export function TaskCard({ task }) {
   return (
@@ -12,7 +12,7 @@ export function TaskCard({ task }) {
         </p>
       </div>
     </Link>
-  );
+  )
 }
 
-export default TaskCard;
+export default TaskCard
