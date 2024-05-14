@@ -6,13 +6,13 @@ export const metadata = {
   description: 'NextMongo is a simple app to manage tasks.',
 }
 import StoreProvider from '@/app/storeProvider'
-import store from '@/lib/store'
+
 function RootLayout({ children }) {
   const creatingeTest = true
   return (
     <html>
       <body>
-        <StoreProvider store={store}>
+        <StoreProvider>
           {creatingeTest && <CreateObjects />}
           <main className='px-5 md:px-0 container mx-auto'>{children}</main>
         </StoreProvider>
