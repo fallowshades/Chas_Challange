@@ -1,4 +1,6 @@
 'use client'
+import SearchButtonComponent from '@/components/SearchButtonComponent'
+import { Button } from '@/components/ui/button'
 const FeaturedQuestionButtons = () => {
   const buttons = [
     { id: 1, text: 'Button 1' },
@@ -10,16 +12,22 @@ const FeaturedQuestionButtons = () => {
   ]
 
   return (
-    <div className='relative flex place-items-center'>
-      <div className='grid grid-cols-2 gap-8'>
-        {buttons.map((button) => (
-          <button
-            key={button.id}
-            className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
-          >
-            {button.text}
-          </button>
-        ))}
+    <div>
+      <div className='relative flex place-items-center'>
+        <div className='grid grid-cols-2 gap-8'>
+          {buttons.map((button) => (
+            <Button
+              key={button.id}
+              className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+            >
+              {button.text}
+            </Button>
+          ))}
+        </div>
+      </div>
+
+      <div>
+        <SearchButtonComponent />
       </div>
     </div>
   )
